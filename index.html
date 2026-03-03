@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pyoba — One True Thing</title>
+  <meta name="description" content="One true thing, every day.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&family=Courier+Prime&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--ink:#0a0a0a;--paper:#f5f0e8;--accent:#8b0000;--mono:'Courier Prime',monospace;--serif:'Cormorant Garamond',Georgia,serif}
+    html,body{height:100%;background:var(--ink);color:var(--paper);font-family:var(--serif);overflow:hidden}
+    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.6}
+    body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,0.55) 100%);pointer-events:none;z-index:0}
+    .frame{position:fixed;inset:28px;border:1px solid rgba(245,240,232,0.08);pointer-events:none;z-index:2}
+    .container{position:relative;z-index:1;height:100vh;display:grid;grid-template-rows:1fr auto;padding:52px 64px}
+    .main{display:flex;align-items:center;justify-content:center}
+    .truth{max-width:820px;text-align:center}
+    .truth__mark{font-family:var(--serif);font-size:clamp(80px,18vw,160px);font-weight:300;font-style:italic;color:var(--accent);line-height:0.6;display:block;margin-bottom:32px;opacity:0;animation:rise 1.2s cubic-bezier(0.16,1,0.3,1) 0.2s forwards}
+    .truth__text{font-size:clamp(22px,3.2vw,42px);font-weight:300;line-height:1.45;letter-spacing:0.01em;color:var(--paper);opacity:0;animation:rise 1.4s cubic-bezier(0.16,1,0.3,1) 0.5s forwards}
+    .footer{display:flex;justify-content:space-between;align-items:flex-end;opacity:0;animation:rise 1s ease 1.4s forwards}
+    .footer__logo{font-family:var(--mono);font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(245,240,232,0.3)}
+    .footer__logo span{color:var(--accent)}
+    .footer__date{font-family:var(--mono);font-size:11px;letter-spacing:0.15em;color:rgba(245,240,232,0.25);text-align:right}
+    .entry-num{display:block;color:rgba(245,240,232,0.12);font-size:10px;margin-top:4px}
+    @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:600px){.container{padding:32px 28px}.frame{inset:16px}}
+  </style>
+</head>
+<body>
+  <div class="frame"></div>
+  <div class="container">
+    <div class="main">
+      <div class="truth">
+        <span class="truth__mark">&ldquo;</span>
+        <p class="truth__text">Most people spend more energy managing how others perceive their problems than actually solving them.</p>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="footer__logo">py<span>o</span>ba</div>
+      <div class="footer__date">March 2, 2026<span class="entry-num">One True Thing</span></div>
+    </footer>
+  </div>
+</body>
+</html>
