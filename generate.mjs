@@ -45,7 +45,7 @@ function callClaude(prompt) {
 
 const PROMPT = `Today is ${TODAY}.
 
-Write exactly ONE sentence for a website called "Pyoba — One True Thing."
+Write exactly ONE sentence for a website called "Pyoba"
 
 The sentence is a precise, unsentimental observation about human nature, psychology, work, relationships, ambition, or how the world actually operates. It should feel like something everyone secretly knows but has never heard stated plainly.
 
