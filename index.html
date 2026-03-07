@@ -3,43 +3,711 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Pyoba</title>
-  <meta name="description" content="One sentence, every day.">
+  <title>GIST — Daily Word Game</title>
+  <meta name="description" content="Read between the lines. Guess the one word that captures it all.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;1,300;1,400&family=Courier+Prime&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
   <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--ink:#0a0a0a;--paper:#f5f0e8;--accent:#8b0000;--mono:'Courier Prime',monospace;--serif:'Cormorant Garamond',Georgia,serif}
-    html,body{height:100%;background:var(--ink);color:var(--paper);font-family:var(--serif);overflow:hidden}
-    body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:0.6}
-    body::after{content:'';position:fixed;inset:0;background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,0.55) 100%);pointer-events:none;z-index:0}
-    .frame{position:fixed;inset:28px;border:1px solid rgba(245,240,232,0.08);pointer-events:none;z-index:2}
-    .container{position:relative;z-index:1;height:100vh;display:grid;grid-template-rows:1fr auto;padding:52px 64px}
-    .main{display:flex;align-items:center;justify-content:center}
-    .truth{max-width:820px;text-align:center}
-    .truth__mark{font-family:var(--serif);font-size:clamp(80px,18vw,160px);font-weight:300;font-style:italic;color:var(--accent);line-height:0.6;display:block;margin-bottom:32px;opacity:0;animation:rise 1.2s cubic-bezier(0.16,1,0.3,1) 0.2s forwards}
-    .truth__text{font-size:clamp(22px,3.2vw,42px);font-weight:300;line-height:1.45;letter-spacing:0.01em;color:var(--paper);opacity:0;animation:rise 1.4s cubic-bezier(0.16,1,0.3,1) 0.5s forwards}
-    .footer{display:flex;justify-content:space-between;align-items:flex-end;opacity:0;animation:rise 1s ease 1.4s forwards}
-    .footer__logo{font-family:var(--mono);font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:rgba(245,240,232,0.3)}
-    .footer__logo span{color:var(--accent)}
-    .footer__date{font-family:var(--mono);font-size:11px;letter-spacing:0.15em;color:rgba(245,240,232,0.25);text-align:right}
-    @keyframes rise{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-    @media(max-width:600px){.container{padding:32px 28px}.frame{inset:16px}}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #f7f4ee;
+      --ink: #1a1814;
+      --mid: #8a8070;
+      --faint: #e2ddd4;
+      --reveal: #2d5a27;
+      --reveal-bg: #eef4ed;
+      --wrong: #c0392b;
+      --wrong-bg: #fdf0ef;
+      --gold: #b8860b;
+      --gold-bg: #fdf8e8;
+      --serif: 'Playfair Display', Georgia, serif;
+      --mono: 'DM Mono', monospace;
+      --sans: 'DM Sans', sans-serif;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: var(--sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Subtle paper texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 24px;
+      width: 100%;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Header ── */
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0 20px;
+      border-bottom: 1px solid var(--faint);
+    }
+
+    .logo {
+      font-family: var(--mono);
+      font-size: 22px;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      color: var(--ink);
+    }
+
+    .logo em { color: var(--gold); font-style: normal; }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .puzzle-num {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--mid);
+      letter-spacing: 0.1em;
+    }
+
+    .btn-how {
+      background: none;
+      border: 1px solid var(--faint);
+      border-radius: 50%;
+      width: 28px;
+      height: 28px;
+      font-size: 13px;
+      color: var(--mid);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+    }
+    .btn-how:hover { border-color: var(--ink); color: var(--ink); }
+
+    /* ── Clue area ── */
+    .clue-section {
+      padding: 32px 0 24px;
+      flex: 1;
+    }
+
+    .clue-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 16px;
+    }
+
+    .clues {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .clue {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--faint);
+      font-family: var(--serif);
+      font-size: 17px;
+      line-height: 1.6;
+      color: var(--ink);
+      opacity: 0;
+      transform: translateY(8px);
+      animation: fadeUp 0.5s ease forwards;
+    }
+
+    .clue:first-child { border-top: 1px solid var(--faint); }
+
+    .clue-num {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--mid);
+      margin-bottom: 4px;
+      letter-spacing: 0.1em;
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .locked-clues {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .clue-locked {
+      padding: 14px 0;
+      border-bottom: 1px solid var(--faint);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .clue-locked:first-child { border-top: 1px solid var(--faint); }
+
+    .clue-locked-bar {
+      height: 10px;
+      border-radius: 2px;
+      background: var(--faint);
+    }
+
+    /* ── Guess history ── */
+    .guesses {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .guess-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 6px;
+      font-family: var(--mono);
+      font-size: 14px;
+      animation: fadeUp 0.3s ease forwards;
+      opacity: 0;
+    }
+
+    .guess-row.wrong {
+      background: var(--wrong-bg);
+      color: var(--wrong);
+      border: 1px solid #f0c0bc;
+    }
+
+    .guess-row.close {
+      background: var(--gold-bg);
+      color: var(--gold);
+      border: 1px solid #e8d080;
+    }
+
+    .guess-row.correct {
+      background: var(--reveal-bg);
+      color: var(--reveal);
+      border: 1px solid #b8d8b4;
+    }
+
+    .guess-icon { font-size: 16px; }
+    .guess-word { flex: 1; letter-spacing: 0.05em; }
+    .guess-hint { font-size: 11px; opacity: 0.7; }
+
+    /* ── Input area ── */
+    .input-section {
+      padding: 20px 0 32px;
+      border-top: 1px solid var(--faint);
+    }
+
+    .guess-counter {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--mid);
+      margin-bottom: 12px;
+      letter-spacing: 0.1em;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .guess-input {
+      flex: 1;
+      background: white;
+      border: 1.5px solid var(--faint);
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-family: var(--serif);
+      font-size: 18px;
+      color: var(--ink);
+      outline: none;
+      transition: border-color 0.15s;
+      letter-spacing: 0.02em;
+    }
+
+    .guess-input:focus { border-color: var(--ink); }
+    .guess-input::placeholder { color: var(--mid); font-style: italic; }
+    .guess-input:disabled { opacity: 0.5; cursor: not-allowed; }
+
+    .btn-guess {
+      background: var(--ink);
+      color: var(--bg);
+      border: none;
+      border-radius: 8px;
+      padding: 12px 24px;
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+
+    .btn-guess:hover { background: #333; }
+    .btn-guess:disabled { opacity: 0.4; cursor: not-allowed; }
+
+    .shake { animation: shake 0.4s ease; }
+    @keyframes shake {
+      0%,100%{transform:translateX(0)}
+      20%{transform:translateX(-6px)}
+      40%{transform:translateX(6px)}
+      60%{transform:translateX(-4px)}
+      80%{transform:translateX(4px)}
+    }
+
+    /* ── End state ── */
+    .end-card {
+      background: white;
+      border: 1px solid var(--faint);
+      border-radius: 12px;
+      padding: 28px;
+      margin-bottom: 24px;
+      text-align: center;
+      animation: fadeUp 0.5s ease forwards;
+      opacity: 0;
+    }
+
+    .end-card .end-emoji { font-size: 40px; margin-bottom: 12px; }
+    .end-card .end-title {
+      font-family: var(--serif);
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .end-card .end-answer {
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--mid);
+      margin-bottom: 16px;
+      letter-spacing: 0.1em;
+    }
+    .end-card .end-answer span {
+      font-size: 16px;
+      color: var(--ink);
+      font-weight: 400;
+    }
+
+    .share-text {
+      background: var(--bg);
+      border: 1px solid var(--faint);
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-family: var(--mono);
+      font-size: 13px;
+      color: var(--ink);
+      margin-bottom: 16px;
+      line-height: 1.8;
+      letter-spacing: 0.05em;
+      white-space: pre-line;
+      text-align: left;
+    }
+
+    .btn-share {
+      background: var(--ink);
+      color: var(--bg);
+      border: none;
+      border-radius: 8px;
+      padding: 12px 28px;
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      transition: all 0.15s;
+      width: 100%;
+    }
+    .btn-share:hover { background: #333; }
+    .btn-share.copied { background: var(--reveal); }
+
+    /* ── How to play modal ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(26,24,20,0.6);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .modal-overlay.open { opacity: 1; pointer-events: all; }
+
+    .modal {
+      background: var(--bg);
+      border-radius: 16px;
+      padding: 32px;
+      max-width: 440px;
+      width: 100%;
+      transform: translateY(12px);
+      transition: transform 0.2s;
+    }
+    .modal-overlay.open .modal { transform: translateY(0); }
+
+    .modal h2 {
+      font-family: var(--serif);
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    .modal p {
+      font-size: 15px;
+      line-height: 1.7;
+      color: #444;
+      margin-bottom: 14px;
+    }
+
+    .modal .example {
+      background: white;
+      border: 1px solid var(--faint);
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-family: var(--mono);
+      font-size: 12px;
+      margin-bottom: 20px;
+      line-height: 2;
+    }
+
+    .modal .example .w { color: var(--wrong); }
+    .modal .example .c { color: var(--gold); }
+    .modal .example .r { color: var(--reveal); }
+
+    .btn-close {
+      background: var(--ink);
+      color: var(--bg);
+      border: none;
+      border-radius: 8px;
+      padding: 12px 28px;
+      font-family: var(--mono);
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    /* ── Loading ── */
+    .loading {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .loading-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .loading-dots span {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--mid);
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+    .loading-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .loading-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+    @keyframes pulse {
+      0%,80%,100% { transform: scale(0.6); opacity: 0.4; }
+      40% { transform: scale(1); opacity: 1; }
+    }
+
+    .loading p {
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--mid);
+      letter-spacing: 0.1em;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      padding: 16px 0 24px;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--mid);
+      letter-spacing: 0.1em;
+      border-top: 1px solid var(--faint);
+    }
+
+    @media (max-width: 480px) {
+      .clue { font-size: 15px; }
+      .guess-input { font-size: 16px; }
+    }
   </style>
 </head>
 <body>
-  <div class="frame"></div>
-  <div class="container">
-    <div class="main">
-      <div class="truth">
-        <span class="truth__mark">&ldquo;</span>
-        <p class="truth__text">The cruelest part of becoming an expert at anything is realizing how much beauty you missed while you were still learning to see.</p>
-      </div>
+
+<div class="wrap">
+  <header>
+    <div class="logo">G<em>I</em>ST</div>
+    <div class="header-right">
+      <span class="puzzle-num" id="puzzle-num"></span>
+      <button class="btn-how" onclick="openModal()">?</button>
     </div>
-    <footer class="footer">
-      <div class="footer__logo">py<span>o</span>ba</div>
-      <div class="footer__date">March 5, 2026</div>
-    </footer>
+  </header>
+
+  <div id="app">
+    <div class="loading">
+      <div class="loading-dots"><span></span><span></span><span></span></div>
+      <p>LOADING TODAY'S PUZZLE</p>
+    </div>
   </div>
+
+  <footer>GIST · A NEW PUZZLE EVERY DAY · PYOBA.COM</footer>
+</div>
+
+<!-- How to play modal -->
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <h2>How to play</h2>
+    <p>A paragraph is hidden. Guess the <strong>one word</strong> that captures its essence.</p>
+    <p>Each wrong guess reveals one more sentence as a clue. You have <strong>5 guesses</strong>.</p>
+    <div class="example">
+      <span class="w">✗ sadness</span> — wrong, +1 sentence revealed<br>
+      <span class="c">~ isolation</span> — close! (same territory)<br>
+      <span class="r">✓ loneliness</span> — that's the GIST
+    </div>
+    <p style="font-size:13px;color:var(--mid)">New puzzle every day at midnight CST.</p>
+    <button class="btn-close" onclick="closeModal()">GOT IT</button>
+  </div>
+</div>
+
+<script>
+// ── Puzzle data embedded at build time ────────────────────────────────────
+const PUZZLE = {"id":1,"answer":"nostalgia","sentences":["It distorts what it touches — smoothing edges, warming colors, silencing the parts that were actually difficult.","Neuroscientists have found it activates reward circuits, meaning the brain treats the past like a drug.","It is almost never about the thing itself, but about the version of yourself that existed alongside it.","It intensifies around objects: a song, a smell, a particular quality of afternoon light in a specific season.","The word was coined in 1688 by a Swiss physician to describe the debilitating homesickness of soldiers far from their villages."],"close":["longing","sentimentality","melancholy","wistfulness","homesickness"]};
+
+// ── State ──────────────────────────────────────────────────────────────────
+const TODAY = new Date().toLocaleDateString('en-CA', { timeZone: 'America/Chicago' });
+const STORAGE_KEY = `gist-${PUZZLE.id}`;
+
+let state = loadState();
+
+function loadState() {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) return JSON.parse(saved);
+  } catch(e) {}
+  return { guesses: [], won: false, lost: false, revealedCount: 1 };
+}
+
+function saveState() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e) {}
+}
+
+// ── Render ─────────────────────────────────────────────────────────────────
+function render() {
+  document.getElementById('puzzle-num').textContent = `#${PUZZLE.id}`;
+
+  const app = document.getElementById('app');
+  const guessesLeft = 5 - state.guesses.length;
+  const revealedSentences = PUZZLE.sentences.slice(0, state.revealedCount);
+  const lockedCount = PUZZLE.sentences.length - state.revealedCount;
+
+  let html = '';
+
+  // End card
+  if (state.won || state.lost) {
+    const score = state.won ? state.guesses.length : 'X';
+    const emoji = state.won
+      ? ['🧠','🔥','✨','💡','🎯'][Math.min(state.guesses.length - 1, 4)]
+      : '😔';
+
+    const squares = state.guesses.map(g => {
+      if (g.result === 'correct') return '🟩';
+      if (g.result === 'close') return '🟨';
+      return '🟥';
+    }).join('');
+
+    const shareStr = `GIST #${PUZZLE.id} ${score}/5\n${squares}\npyoba.com`;
+
+    html += `
+      <div class="end-card">
+        <div class="end-emoji">${emoji}</div>
+        <div class="end-title">${state.won ? 'You got the GIST' : 'Not quite'}</div>
+        <div class="end-answer">The answer was <span>${PUZZLE.answer.toUpperCase()}</span></div>
+        <div class="share-text" id="share-text">${shareStr}</div>
+        <button class="btn-share" id="btn-share" onclick="copyShare()">COPY & SHARE</button>
+      </div>`;
+  }
+
+  // Clues
+  html += `<div class="clue-section">`;
+  html += `<div class="clue-label">CLUE${revealedSentences.length > 1 ? 'S' : ''} REVEALED — ${revealedSentences.length} of ${PUZZLE.sentences.length}</div>`;
+  html += `<div class="clues">`;
+  revealedSentences.forEach((s, i) => {
+    html += `<div class="clue" style="animation-delay:${i * 0.08}s">
+      <div class="clue-num">— ${i + 1}</div>
+      ${s}
+    </div>`;
+  });
+  html += `</div>`;
+
+  // Locked clues preview
+  if (lockedCount > 0 && !state.won && !state.lost) {
+    html += `<div class="locked-clues" style="margin-top:0">`;
+    for (let i = 0; i < lockedCount; i++) {
+      const w = 40 + Math.random() * 40;
+      const w2 = 20 + Math.random() * 30;
+      html += `<div class="clue-locked">
+        <div class="clue-locked-bar" style="width:${w}%;"></div>
+        <div class="clue-locked-bar" style="width:${w2}%;"></div>
+      </div>`;
+    }
+    html += `</div>`;
+  }
+
+  html += `</div>`; // end clue-section
+
+  // Guess history
+  if (state.guesses.length > 0) {
+    html += `<div class="guesses">`;
+    state.guesses.forEach((g, i) => {
+      const icon = g.result === 'correct' ? '✓' : g.result === 'close' ? '~' : '✗';
+      const hint = g.result === 'close' ? 'close...' : '';
+      html += `<div class="guess-row ${g.result}" style="animation-delay:0s">
+        <span class="guess-icon">${icon}</span>
+        <span class="guess-word">${g.word}</span>
+        <span class="guess-hint">${hint}</span>
+      </div>`;
+    });
+    html += `</div>`;
+  }
+
+  // Input
+  if (!state.won && !state.lost) {
+    html += `
+      <div class="input-section">
+        <div class="guess-counter">${guessesLeft} GUESS${guessesLeft !== 1 ? 'ES' : ''} REMAINING</div>
+        <div class="input-row">
+          <input type="text" class="guess-input" id="guess-input"
+            placeholder="your one word..."
+            maxlength="30"
+            autocomplete="off"
+            autocorrect="off"
+            spellcheck="false"
+            onkeydown="handleKey(event)">
+          <button class="btn-guess" onclick="submitGuess()">GUESS</button>
+        </div>
+      </div>`;
+  }
+
+  app.innerHTML = html;
+
+  if (!state.won && !state.lost) {
+    document.getElementById('guess-input')?.focus();
+  }
+}
+
+// ── Game logic ─────────────────────────────────────────────────────────────
+function normalize(word) {
+  return word.trim().toLowerCase().replace(/[^a-z]/g, '');
+}
+
+function checkGuess(word) {
+  const w = normalize(word);
+  const answer = normalize(PUZZLE.answer);
+
+  if (w === answer) return 'correct';
+
+  // Check synonyms / close words
+  const close = (PUZZLE.close || []).map(normalize);
+  if (close.includes(w)) return 'close';
+
+  // Simple stem check
+  if (answer.startsWith(w) || w.startsWith(answer)) return 'close';
+
+  return 'wrong';
+}
+
+function submitGuess() {
+  const input = document.getElementById('guess-input');
+  if (!input) return;
+  const word = input.value.trim();
+  if (!word) return;
+
+  const result = checkGuess(word);
+
+  state.guesses.push({ word, result });
+
+  if (result === 'correct') {
+    state.won = true;
+  } else if (result === 'wrong') {
+    // Reveal next sentence
+    if (state.revealedCount < PUZZLE.sentences.length) {
+      state.revealedCount++;
+    }
+  }
+
+  if (!state.won && state.guesses.length >= 5) {
+    state.lost = true;
+    state.revealedCount = PUZZLE.sentences.length;
+  }
+
+  saveState();
+  render();
+
+  if (result === 'wrong' || result === 'close') {
+    setTimeout(() => {
+      const inp = document.getElementById('guess-input');
+      if (inp) { inp.classList.add('shake'); setTimeout(() => inp.classList.remove('shake'), 400); }
+    }, 50);
+  }
+}
+
+function handleKey(e) {
+  if (e.key === 'Enter') submitGuess();
+}
+
+function copyShare() {
+  const text = document.getElementById('share-text').textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.getElementById('btn-share');
+    btn.textContent = 'COPIED!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'COPY & SHARE'; btn.classList.remove('copied'); }, 2000);
+  });
+}
+
+function openModal() {
+  document.getElementById('modal').classList.add('open');
+}
+function closeModal() {
+  document.getElementById('modal').classList.remove('open');
+}
+function closeModalOutside(e) {
+  if (e.target === document.getElementById('modal')) closeModal();
+}
+
+// ── Init ───────────────────────────────────────────────────────────────────
+render();
+</script>
 </body>
 </html>
