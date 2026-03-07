@@ -92,7 +92,7 @@ console.log(`✅ Answer: "${puzzle.answer}"`);
 console.log(`📝 Sentences: ${puzzle.sentences.length}`);
 
 // Read template and inject puzzle data
-const template = fs.readFileSync("index.template.html", "utf8");
+const template = fs.readFileSync("template.html", "utf8");
 const output = template.replace(
   "__PUZZLE_DATA__",
   JSON.stringify(puzzle)
