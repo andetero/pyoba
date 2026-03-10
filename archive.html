@@ -405,12 +405,15 @@ function calcPersonalStats(scores) {
   }
 
   // Best score (fewest guesses on a win)
-  const winGuesses = entries.filter(e => e.won).map(e => e.guesses);
+  const winGuesses = entries.filter(e => e.won).map(e => Array.isArray(e.guesses) ? e.guesses.length : e.guesses);
   const bestGuess = winGuesses.length ? Math.min(...winGuesses) : '-';
 
   // Distribution
   const dist = { 1: 0, 2: 0, 3: 0, 4: 0, 5: 0 };
-  entries.filter(e => e.won).forEach(e => { dist[e.guesses] = (dist[e.guesses] || 0) + 1; });
+  entries.filter(e => e.won).forEach(e => {
+  const g = Array.isArray(e.guesses) ? e.guesses.length : e.guesses;
+  dist[g] = (dist[g] || 0) + 1;
+});
 
   return { played, winRate, streak, bestGuess, dist };
 }
