@@ -30,6 +30,6 @@ jobs:
         run: |
           git config user.name "gist-bot"
           git config user.email "bot@pyoba.com"
-          git add index.html
+          git add index.html puzzles.json
           git diff --staged --quiet || git commit -m "puzzle #$(date +'%Y-%m-%d')"
           git push
