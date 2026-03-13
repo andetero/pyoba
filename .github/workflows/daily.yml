@@ -1,31 +1,32 @@
 name: Daily Puzzle
-
 on:
   schedule:
-    # Midnight CST = 06:00 UTC
     - cron: '0 6 * * *'
   workflow_dispatch:
-
+    inputs:
+      puzzle_id:
+        description: 'Puzzle ID to backfill (leave empty for today)'
+        required: false
+      puzzle_date:
+        description: 'Date for difficulty (YYYY-MM-DD, leave empty for today)'
+        required: false
 permissions:
   contents: write
-
 jobs:
   generate:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: '20' }
       - name: Generate today's puzzle
-        run: node generate.mjs
+        run: |
+          ARGS=""
+          [ -n "${{ github.event.inputs.puzzle_id }}" ] && ARGS="$ARGS --id=${{ github.event.inputs.puzzle_id }}"
+          [ -n "${{ github.event.inputs.puzzle_date }}" ] && ARGS="$ARGS --date=${{ github.event.inputs.puzzle_date }}"
+          node generate.mjs $ARGS
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-
       - name: Commit and push
         run: |
           git config user.name "gist-bot"
