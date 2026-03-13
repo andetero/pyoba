@@ -6,16 +6,24 @@ if (!ANTHROPIC_API_KEY) { console.error("❌ No API key"); process.exit(1); }
 
 // Puzzle number: days since launch (March 6, 2026)
 const LAUNCH = new Date("2026-03-06T00:00:00-06:00");
-const NOW = new Date();
-const PUZZLE_ID = Math.floor((NOW - LAUNCH) / (1000 * 60 * 60 * 24)) + 1;
 
-const TODAY = new Date().toLocaleDateString("en-US", {
+// Allow overrides: node generate.mjs --id=5 --date=2026-03-10
+const idArg   = process.argv.find(a => a.startsWith('--id='));
+const dateArg = process.argv.find(a => a.startsWith('--date='));
+
+const NOW = dateArg ? new Date(dateArg.split('=')[1] + 'T12:00:00-06:00') : new Date();
+const PUZZLE_ID = idArg
+  ? parseInt(idArg.split('=')[1])
+  : Math.floor((NOW - LAUNCH) / (1000 * 60 * 60 * 24)) + 1;
+
+const TODAY = NOW.toLocaleDateString("en-US", {
   weekday: "long", year: "numeric", month: "long", day: "numeric",
   timeZone: "America/Chicago",
 });
 
 // Day of week in CST (0 = Sunday, 1 = Monday ... 6 = Saturday)
-const DOW = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Chicago" })).getDay();
+const DOW = new Date(NOW.toLocaleString("en-US", { timeZone: "America/Chicago" })).getDay();
+
 
 // Difficulty ramp: Mon=easy, Tue=easy-medium, Wed=medium, Thu=medium-hard, Fri=hard, Sat=hard, Sun=wildcard
 const DIFFICULTY_MAP = {
@@ -110,12 +118,26 @@ function callClaude(prompt) {
   });
 }
 
+// Load recent answers from puzzles.json to prevent duplicates
+let recentAnswers = [];
+try {
+  const archive = JSON.parse(fs.readFileSync("puzzles.json", "utf8"));
+  recentAnswers = archive
+    .sort((a, b) => b.id - a.id)
+    .slice(0, 30)
+    .map(p => p.answer.toLowerCase());
+} catch(e) { recentAnswers = []; }
+
+const recentBlock = recentAnswers.length
+  ? `\nDo NOT use any of these recent answers (already used in the last 30 days):\n${recentAnswers.join(", ")}\n`
+  : "";
+
 const PROMPT = `Today is ${TODAY}. You are generating puzzle #${PUZZLE_ID} for GIST, a daily word game.
 
 In GIST, a paragraph is hidden. Players guess the ONE WORD that captures its essence. Each wrong guess reveals one more sentence of the paragraph as a clue. There are 5 sentences total, revealed one by one.
 
 ${DIFFICULTY_INSTRUCTIONS[DIFFICULTY.level]}
-
+${recentBlock}
 Your job: create a puzzle. Choose a concept, emotion, phenomenon, or idea as the answer word. Write a 5-sentence paragraph that describes it without ever saying the word. The paragraph should be beautifully written — like an encyclopedia crossed with a prose poem.
 
 Rules:
