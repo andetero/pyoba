@@ -1,6 +1,25 @@
 [
   {
     "answer": "nostalgia",
+    "difficulty": "HARD",
+    "sentences": [
+      "Time becomes geography in this peculiar affliction, where distance is measured not in miles but in moments that can never be retraced.",
+      "The Greeks considered it a medical condition, a pathology of soldiers and sailors who had wandered too far from their origins.",
+      "It transforms memory into fiction, burnishing ordinary experiences with a golden light they never possessed in their original occurrence.",
+      "The feeling grows stronger not with the significance of what was lost, but with the impossibility of its return.",
+      "From the Greek words for 'homecoming' and 'pain,' it describes the bittersweet ache of longing for a past that exists now only in the architecture of remembrance."
+    ],
+    "close": [
+      "melancholy",
+      "longing",
+      "wistfulness",
+      "yearning",
+      "homesickness"
+    ],
+    "id": 8
+  },
+  {
+    "answer": "nostalgia",
     "difficulty": "MEDIUM",
     "sentences": [
       "It transforms the ordinary debris of memory into something precious, like light refracting through water to create colors that were never really there.",
