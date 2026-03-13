@@ -9,32 +9,98 @@
       "The feeling grows stronger not with the significance of what was lost, but with the impossibility of its return.",
       "From the Greek words for 'homecoming' and 'pain,' it describes the bittersweet ache of longing for a past that exists now only in the architecture of remembrance."
     ],
-    "close": [
-      "melancholy",
-      "longing",
-      "wistfulness",
-      "yearning",
-      "homesickness"
-    ],
+    "close": ["melancholy", "longing", "wistfulness", "yearning", "homesickness"],
     "id": 8
   },
   {
-    "answer": "nostalgia",
+    "answer": "ambition",
     "difficulty": "MEDIUM",
     "sentences": [
-      "It transforms the ordinary debris of memory into something precious, like light refracting through water to create colors that were never really there.",
-      "Psychologists have found it to be a fundamentally social emotion, despite feeling intensely personal — it connects us to people and places across the chasm of time.",
-      "The feeling grows stronger with age, as the mind builds an ever-larger catalog of moments that can never be revisited.",
-      "It is bittersweet by nature, combining the warmth of remembrance with the sharp awareness of irretrievable loss.",
-      "The word itself means 'pain from an old wound' — originally coined to describe the homesickness of Swiss mercenaries fighting in foreign lands."
+      "It is the engine that runs on futures not yet built, burning the present as its fuel.",
+      "Psychologists distinguish between its harmonious and obsessive forms — one enriches life, the other quietly hollows it out.",
+      "It requires a particular blindness: the ability to act as though the outcome is certain while knowing it is not.",
+      "Those who possess it in excess are often described as ruthless; those who lack it entirely are called content.",
+      "The word derives from the Latin for 'going around' — as in a Roman politician canvassing for votes, circling the forum in search of support."
     ],
-    "close": [
-      "wistfulness",
-      "melancholy",
-      "yearning",
-      "sentimentality",
-      "reminiscence"
-    ],
+    "close": ["drive", "determination", "aspiration", "hunger", "motivation"],
     "id": 7
+  },
+  {
+    "answer": "memory",
+    "difficulty": "EASY",
+    "sentences": [
+      "It transforms with each act of retrieval, becoming less faithful to its origin while growing more essential to identity.",
+      "Neuroscientists describe it as a distributed symphony, with no single conductor but countless instruments playing across the brain's vast orchestra.",
+      "Time both strengthens and weakens it — recent events fade while distant moments crystallize into permanent fixtures of the mind.",
+      "Without it, every face would be a stranger's, every room entered for the first time, every grief freshly born.",
+      "The ancient Greeks built elaborate mental palaces to house it, walking imaginary corridors to retrieve what they needed to remember."
+    ],
+    "close": ["recollection", "remembrance", "recall", "reminiscence"],
+    "id": 4
+  },
+  {
+    "answer": "hunger",
+    "difficulty": "EASY",
+    "sentences": [
+      "It begins as a whisper from the body and becomes, if ignored long enough, the only thought the mind can hold.",
+      "Every culture has built elaborate rituals around its satisfaction, transforming biological necessity into art, ceremony, and communion.",
+      "It sharpens the senses — food smells more vivid, time moves more slowly, the world contracts to a single need.",
+      "Philosophers have used it as a metaphor for desire itself, arguing that all wanting shares its restless, consuming quality.",
+      "The body experiences it as an emptiness, but it is in fact the opposite — a cascade of signals, hormones, and electrical impulses demanding to be heard."
+    ],
+    "close": ["appetite", "craving", "starvation", "desire", "thirst"],
+    "id": 3
+  },
+  {
+    "answer": "silence",
+    "difficulty": "HARD",
+    "sentences": [
+      "It is never truly achieved — beneath every apparent absence of sound lies a deeper architecture of vibration the ear refuses to register.",
+      "Composers have argued it is not the opposite of music but its essential component, the space that gives notes their meaning.",
+      "Different cultures fill it differently: some with obligation, some with reverence, some with the discomfort of an unanswered question.",
+      "It can be a gift between two people who trust each other completely, or a weapon deployed by those who refuse to speak.",
+      "John Cage famously composed four minutes and thirty-three seconds of it, insisting that what the audience heard instead was the real piece."
+    ],
+    "close": ["quiet", "stillness", "hush", "muteness", "calm"],
+    "id": 6
+  },
+  {
+    "answer": "forgiveness",
+    "difficulty": "EASY",
+    "sentences": [
+      "It is often described as a gift to the person who receives it, but those who study it find it benefits the giver far more.",
+      "It does not require forgetting, excusing, or reconciling — it is possible to grant it fully while still maintaining distance from the one who caused harm.",
+      "Children extend it instinctively; adults must often choose it deliberately, returning to the decision again and again as old feelings resurface.",
+      "Religious traditions across the world place it at the center of moral life, though they differ on whether it must be earned or can be freely given.",
+      "The word shares its root with 'give' — it is, at its core, an act of releasing a debt that was genuinely owed."
+    ],
+    "close": ["pardon", "absolution", "mercy", "clemency", "grace"],
+    "id": 5
+  },
+  {
+    "answer": "embarrassment",
+    "difficulty": "MEDIUM-HARD",
+    "sentences": [
+      "It is a uniquely social wound — one that requires an audience, real or imagined, to inflict its particular sting.",
+      "The body betrays it involuntarily: blood rushes to the surface, the gaze drops, the posture collapses inward as if trying to occupy less space.",
+      "Psychologists note it serves a social function, signaling to others that you recognize you have violated a norm and care about their judgment.",
+      "It differs from shame in an important way: shame says 'I am bad,' while this feeling says only 'I have been seen doing something bad.'",
+      "Even the memory of it, years later, can produce a physical sensation — the sudden heat of a moment the conscious mind would rather not revisit."
+    ],
+    "close": ["shame", "humiliation", "mortification", "awkwardness", "chagrin"],
+    "id": 2
+  },
+  {
+    "answer": "threshold",
+    "difficulty": "HARD",
+    "sentences": [
+      "It exists in the precise instant between two states, belonging fully to neither, a membrane rather than a place.",
+      "Physicists use it to describe the minimum energy required to trigger a reaction — below it, nothing; above it, everything changes.",
+      "Anthropologists have long studied the rituals humans build around it, recognizing that crossings between states require ceremony to feel real.",
+      "In neuroscience, it marks the point at which a signal becomes strong enough to fire — the difference between potential and action.",
+      "The word comes from the Old English for the piece of wood you step across to enter a home, that worn plank separating the world outside from the world within."
+    ],
+    "close": ["boundary", "limit", "tipping point", "edge", "margin"],
+    "id": 1
   }
 ]
