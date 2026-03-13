@@ -242,13 +242,13 @@ async function render() {
 
     let answerHtml = '';
     let diffHtml = '';
-    if (puzzle) {
-      answerHtml = `<div class="puzzle-answer">${puzzle.answer}</div>`;
-      if (puzzle.difficulty) diffHtml = `<div class="puzzle-diff">${puzzle.difficulty}</div>`;
-    } else if (played) {
-      answerHtml = `<div class="puzzle-answer">${local.answer || '—'}</div>`;
+    if (played) {
+      const answer = (puzzle?.answer || local?.answer || '—');
+      answerHtml = `<div class="puzzle-answer">${answer}</div>`;
+      if (puzzle?.difficulty) diffHtml = `<div class="puzzle-diff">${puzzle.difficulty}</div>`;
     } else {
       answerHtml = `<div class="puzzle-answer unplayed">NOT PLAYED</div>`;
+      if (puzzle?.difficulty) diffHtml = `<div class="puzzle-diff">${puzzle.difficulty}</div>`;
     }
 
     const squares = played
