@@ -24,14 +24,13 @@ const TODAY = NOW.toLocaleDateString("en-US", {
 // Day of week in CST (0 = Sunday, 1 = Monday ... 6 = Saturday)
 const DOW = new Date(NOW.toLocaleString("en-US", { timeZone: "America/Chicago" })).getDay();
 
-
-// Difficulty ramp: Mon=easy, Tue=easy-medium, Wed=medium, Thu=medium-hard, Fri=hard, Sat=hard, Sun=wildcard
+// Difficulty ramp: Mon=easy, Tue=easy, Wed=medium, Thu=medium, Fri=hard, Sat=hard, Sun=wildcard
 const DIFFICULTY_MAP = {
   0: { label: "WILDCARD", level: "wildcard" },
   1: { label: "EASY",     level: "easy" },
-  2: { label: "EASY",     level: "easy-medium" },
+  2: { label: "EASY",     level: "easy" },
   3: { label: "MEDIUM",   level: "medium" },
-  4: { label: "MEDIUM",   level: "medium-hard" },
+  4: { label: "MEDIUM",   level: "medium" },
   5: { label: "HARD",     level: "hard" },
   6: { label: "HARD",     level: "hard" },
 };
@@ -42,46 +41,35 @@ const DIFFICULTY_INSTRUCTIONS = {
   "easy": `
 DIFFICULTY: EASY
 - The answer word should be concrete, universally familiar, and immediately relatable
-- Examples of appropriate answer words: sleep, laughter, hunger, embarrassment, boredom, jealousy
+- Examples of appropriate answer words: sleep, laughter, hunger, embarrassment, boredom, jealousy, curiosity
 - The paragraph clues should be warm and accessible — someone should get it in 1-2 guesses
-- Sentence 1 can still be poetic but should not be impenetrable
-- Avoid obscure vocabulary in the clues`,
-
-  "easy-medium": `
-DIFFICULTY: EASY-MEDIUM
-- The answer word should be familiar but slightly more conceptual
-- Examples: nostalgia, ambition, habit, coincidence, forgiveness, procrastination
-- Most people should get it within 3 guesses
-- Sentence 1 should be indirect but sentence 3 should make it fairly clear`,
+- Sentence 1 can be poetic but should not be impenetrable
+- Avoid obscure vocabulary in the clues
+- The word should be something a 12-year-old would know`,
 
   "medium": `
 DIFFICULTY: MEDIUM
-- The answer word should be a real but somewhat abstract concept
-- Examples: irony, momentum, entropy, threshold, compromise, reputation
-- A thoughtful person should get it in 3-4 guesses
-- The clues should require genuine lateral thinking`,
-
-  "medium-hard": `
-DIFFICULTY: MEDIUM-HARD
-- The answer word should be abstract or nuanced — something people know but rarely name
-- Examples: cognitive dissonance, complicity, catharsis, schadenfreude, paradox, inertia
-- Most players will need 4-5 clues
-- Sentence 1 should be genuinely cryptic`,
+- The answer word should be familiar but more conceptual or abstract
+- Examples: nostalgia, ambition, coincidence, forgiveness, procrastination, momentum, compromise, reputation
+- A thoughtful person should get it in 2-4 guesses
+- Sentence 1 should be indirect but sentence 3 should make it fairly clear
+- The word should be something most adults use regularly`,
 
   "hard": `
 DIFFICULTY: HARD
-- The answer word should be philosophical, rare, or highly abstract
-- Examples: liminality, solipsism, entropy, aporia, sublimation, alienation, reification
-- Many players will not get it at all
-- All 5 clues together should make it clear in retrospect, but sentence 1 alone should be nearly impossible
-- The word can be from philosophy, psychology, physics, linguistics, or sociology`,
+- The answer word should be abstract or nuanced but still something an educated person would know
+- Examples: schadenfreude, catharsis, paradox, cognitive dissonance, entropy, inertia, zeitgeist, empathy, resilience
+- Most players will need 4-5 clues to get it
+- Sentence 1 should be cryptic but not impossible
+- Avoid highly obscure academic terms from philosophy or linguistics that most people have never heard of
+- The word should be something you might read in a quality newspaper`,
 
   "wildcard": `
 DIFFICULTY: WILDCARD (Sunday)
-- Surprise us. Pick any difficulty level you want — could be easy, could be brutally hard
+- Surprise us. Pick any difficulty level you want — could be easy, could be hard
 - The topic should be unexpected and unlike anything from a typical weekday
 - Consider unusual domains: architecture, cooking, mathematics, music theory, geology, linguistics
-- Make it memorable`,
+- Make it memorable and fun`,
 };
 
 function callClaude(prompt) {
@@ -134,7 +122,7 @@ const recentBlock = recentAnswers.length
 
 const PROMPT = `Today is ${TODAY}. You are generating puzzle #${PUZZLE_ID} for GIST, a daily word game.
 
-In GIST, a paragraph is hidden. Players guess the ONE WORD that captures its essence. Each wrong guess reveals one more sentence of the paragraph as a clue. There are 5 sentences total, revealed one by one.
+In GIST, a paragraph is revealed one sentence at a time. Players guess the ONE WORD that captures its essence. Each wrong guess reveals one more sentence of the paragraph as a clue. There are 5 sentences total, revealed one by one.
 
 ${DIFFICULTY_INSTRUCTIONS[DIFFICULTY.level]}
 ${recentBlock}
