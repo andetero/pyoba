@@ -1,5 +1,24 @@
 [
   {
+    "answer": "resonance",
+    "difficulty": "WILDCARD",
+    "sentences": [
+      "It is the secret conversation between objects that have never touched, a invisible thread connecting wine glasses to opera singers and bridges to marching soldiers.",
+      "Ancient cathedral builders understood its mathematics, designing stone chambers where a whispered prayer could bloom into something approaching the divine.",
+      "Every atom possesses its own preferred rhythm, and when the world matches that frequency, the smallest things begin to dance with dangerous amplitude.",
+      "Musicians spend lifetimes learning to create it between instrument and hall, between performer and audience, between silence and sound.",
+      "It occurs when the natural vibration of one system amplifies another, sometimes beautifully, sometimes catastrophically, always perfectly synchronized."
+    ],
+    "close": [
+      "harmony",
+      "vibration",
+      "echo",
+      "amplification",
+      "frequency"
+    ],
+    "id": 10
+  },
+  {
     "answer": "apophenia",
     "difficulty": "HARD",
     "sentences": [
