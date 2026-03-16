@@ -1,5 +1,24 @@
 [
   {
+    "answer": "friendship",
+    "difficulty": "EASY",
+    "sentences": [
+      "It begins with the smallest gestures — a shared glance across a room, the offer of half a sandwich, choosing to sit beside someone new.",
+      "Unlike the bonds we're born into, this connection requires daily choice, sustained by loyalty freely given rather than obligation.",
+      "Children form it effortlessly on playgrounds, while adults must work harder to nurture the same easy trust and understanding.",
+      "It weathers arguments, celebrates victories together, and offers comfort without judgment during life's most difficult moments.",
+      "The word traces back to Old English, meaning 'to love' — describing those rare people we choose as family."
+    ],
+    "close": [
+      "companionship",
+      "bond",
+      "kinship",
+      "affection",
+      "loyalty"
+    ],
+    "id": 11
+  },
+  {
     "answer": "resonance",
     "difficulty": "WILDCARD",
     "sentences": [
