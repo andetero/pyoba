@@ -1,5 +1,24 @@
 [
   {
+    "answer": "curiosity",
+    "difficulty": "EASY",
+    "sentences": [
+      "It drives children to touch hot stoves and adults to click on links they probably shouldn't.",
+      "Scientists say it evolved as a survival mechanism, pushing our ancestors to explore new territories and discover resources.",
+      "Cats are famously said to be killed by it, though it serves them well in hunting and navigation.",
+      "It transforms the ordinary into the extraordinary, making us notice details we've passed by a thousand times before.",
+      "The moment you wonder 'what would happen if...' or 'why does...' you are experiencing this fundamental human drive to know and understand."
+    ],
+    "close": [
+      "wonder",
+      "interest",
+      "intrigue",
+      "fascination",
+      "questioning"
+    ],
+    "id": 12
+  },
+  {
     "answer": "friendship",
     "difficulty": "EASY",
     "sentences": [
