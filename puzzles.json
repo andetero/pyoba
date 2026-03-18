@@ -1,5 +1,24 @@
 [
   {
+    "answer": "momentum",
+    "difficulty": "MEDIUM",
+    "sentences": [
+      "It accumulates invisibly until suddenly everything seems effortless, carrying you forward without conscious effort.",
+      "Physics borrowed the word from everyday language, but the original meaning captures something more elusive than mass times velocity.",
+      "Success breeds success through this principle — each small victory makes the next one easier to achieve.",
+      "Once established, it becomes almost impossible to stop, though getting started often requires tremendous force.",
+      "Athletes speak of finding it mid-game, when their body seems to move ahead of their mind, propelled by the weight of accumulated motion."
+    ],
+    "close": [
+      "inertia",
+      "acceleration",
+      "velocity",
+      "drive",
+      "force"
+    ],
+    "id": 13
+  },
+  {
     "answer": "curiosity",
     "difficulty": "EASY",
     "sentences": [
