@@ -40,20 +40,20 @@ const DIFFICULTY = DIFFICULTY_MAP[DOW];
 const DIFFICULTY_INSTRUCTIONS = {
   "easy": `
 DIFFICULTY: EASY
-- The answer word should be concrete, universally familiar, and immediately relatable
+- The answer word should be concrete and universally familiar but not instantly obvious
 - Examples of appropriate answer words: sleep, laughter, hunger, embarrassment, boredom, jealousy, curiosity
-- The paragraph clues should be warm and accessible — someone should get it in 1-2 guesses
+- The paragraph clues should be warm and accessible — someone should get it in 2-3 guesses
 - Sentence 1 can be poetic but should not be impenetrable
 - Avoid obscure vocabulary in the clues
-- The word should be something a 12-year-old would know`,
+- The word should be familiar but require a moment of thought`,
 
   "medium": `
 DIFFICULTY: MEDIUM
 - The answer word should be familiar but more conceptual or abstract
 - Examples: nostalgia, ambition, coincidence, forgiveness, procrastination, momentum, compromise, reputation
-- A thoughtful person should get it in 2-4 guesses
-- Sentence 1 should be indirect but sentence 3 should make it fairly clear
-- The word should be something most adults use regularly`,
+- A thoughtful person should get it in 3-4 guesses
+- Sentence 1 should be indirect and sentence 4 should make it fairly clear
+- The word should be something most adults use regularly but wouldn't guess immediately`,
 
   "hard": `
 DIFFICULTY: HARD
@@ -126,7 +126,7 @@ In GIST, a paragraph is revealed one sentence at a time. Players guess the ONE W
 
 ${DIFFICULTY_INSTRUCTIONS[DIFFICULTY.level]}
 ${recentBlock}
-Your job: create a puzzle. Choose a concept, emotion, phenomenon, or idea as the answer word. Write a 5-sentence paragraph that describes it without ever saying the word. The paragraph should be beautifully written — like an encyclopedia crossed with a prose poem.
+Your job: create a puzzle. Choose a concept, emotion, phenomenon, idea, or everyday object as the answer word. Write a 5-sentence paragraph that describes it without ever saying the word. The paragraph should be beautifully written — like an encyclopedia crossed with a prose poem.
 
 Rules:
 - The answer must be a single English word (not a proper noun, not a phrase)
