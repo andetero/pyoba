@@ -173,8 +173,8 @@ console.log(`📝 Sentences: ${puzzle.sentences.length}`);
 const template = fs.readFileSync("template.html", "utf8");
 const output = template.replace("__PUZZLE_DATA__", JSON.stringify(puzzle));
 
-fs.writeFileSync("index.html", output);
-console.log(`📄 index.html written for puzzle #${PUZZLE_ID}`);
+fs.writeFileSync("gist.html", output);
+console.log(`📄 gist.html written for puzzle #${PUZZLE_ID}`);
 
 // Append to puzzles.json archive
 let archive = [];
