@@ -97,11 +97,6 @@
     .end-answer { font-family: var(--mono); font-size: 13px; color: var(--mid); margin-bottom: 12px; letter-spacing: 0.1em; }
     .end-answer span { font-size: 16px; color: var(--ink); }
 
-    .community-stats { display: flex; justify-content: center; gap: 28px; margin-bottom: 16px; padding: 14px 0; border-top: 1px solid var(--faint); border-bottom: 1px solid var(--faint); }
-    .stat { text-align: center; }
-    .stat-val { font-family: var(--mono); font-size: 22px; color: var(--ink); }
-    .stat-label { font-family: var(--mono); font-size: 9px; color: var(--mid); letter-spacing: 0.15em; margin-top: 3px; }
-
     .share-text { background: var(--bg); border: 1px solid var(--faint); border-radius: 6px; padding: 12px 16px; font-family: var(--mono); font-size: 13px; color: var(--ink); margin-bottom: 12px; line-height: 1.8; letter-spacing: 0.05em; white-space: pre-line; text-align: left; }
 
     .btn-share { background: var(--ink); color: var(--bg); border: none; border-radius: 8px; padding: 12px 28px; font-family: var(--mono); font-size: 13px; letter-spacing: 0.1em; cursor: pointer; transition: opacity 0.15s; width: 100%; margin-bottom: 10px; }
@@ -146,9 +141,6 @@
 </div>
 
 <script>
-const SUPABASE_URL = 'https://ctrwrryyypxfeaggwuzh.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_5cLkMj-rmHw-AMmCd2rB4Q_Tf2ChS2v';
-
 const params = new URLSearchParams(window.location.search);
 const TARGET_ID = parseInt(params.get('id'));
 if (!TARGET_ID) window.location.href = '/';
@@ -191,28 +183,6 @@ function saveState() {
   } catch(e) {}
 }
 
-async function submitScore(puzzleId, guesses, won) {
-  try {
-    await fetch(`${SUPABASE_URL}/rest/v1/scores`, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}`, 'Prefer': 'return=minimal' },
-      body: JSON.stringify({ puzzle_id: puzzleId, guesses, won })
-    });
-  } catch(e) {}
-}
-
-async function fetchCommunityStats(puzzleId) {
-  try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/scores?puzzle_id=eq.${puzzleId}&select=guesses,won`,
-      { headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` } });
-    const rows = await res.json();
-    if (!rows.length) return null;
-    const total = rows.length;
-    const wins = rows.filter(r => r.won).length;
-    return { total, solveRate: Math.round((wins/total)*100), avgGuesses: (rows.reduce((s,r)=>s+r.guesses,0)/total).toFixed(1) };
-  } catch(e) { return null; }
-}
-
 async function render() {
   const app = document.getElementById('app');
   document.getElementById('puzzle-num').textContent = PUZZLE.difficulty
@@ -230,19 +200,11 @@ async function render() {
     const emoji = state.won ? ['🧠','🔥','✨','💡','🎯'][Math.min(state.guesses.length-1,4)] : '😔';
     const squares = state.guesses.map(g => g.result==='correct'?'🟩':g.result==='close'?'🟨':'🟥').join('');
     const shareStr = `GIST #${PUZZLE.id} ${score}/5\n${squares}\npyoba.com`;
-    const stats = await fetchCommunityStats(PUZZLE.id);
-    const statsHtml = stats ? `
-      <div class="community-stats">
-        <div class="stat"><div class="stat-val">${stats.total}</div><div class="stat-label">PLAYED</div></div>
-        <div class="stat"><div class="stat-val">${stats.solveRate}%</div><div class="stat-label">SOLVED</div></div>
-        <div class="stat"><div class="stat-val">${stats.avgGuesses}</div><div class="stat-label">AVG GUESSES</div></div>
-      </div>` : '';
 
     html += `<div class="end-card">
       <div class="end-emoji">${emoji}</div>
       <div class="end-title">${state.won ? 'You got the GIST' : 'Not quite'}</div>
       <div class="end-answer">The answer was <span>${PUZZLE.answer.toUpperCase()}</span></div>
-      ${statsHtml}
       <div class="share-text" id="share-text">${shareStr}</div>
       <button class="btn-share" id="btn-share" onclick="copyShare()">COPY & SHARE</button>
       <a href="/archive.html" class="btn-back">← BACK TO ARCHIVE</a>
@@ -316,7 +278,7 @@ async function submitGuess() {
   if (!input) return;
   const word = input.value.trim();
   if (!word) return;
-  if (state.won || state.lost) return;  // prevent double submission
+  if (state.won || state.lost) return;
 
   const result = checkGuess(word);
   state.guesses.push({ word, result });
@@ -324,11 +286,6 @@ async function submitGuess() {
   if (result === 'correct') state.won = true;
   else if (state.revealedCount < PUZZLE.sentences.length) state.revealedCount++;
   if (!state.won && state.guesses.length >= 5) { state.lost = true; state.revealedCount = PUZZLE.sentences.length; }
-
-  if ((state.won || state.lost) && !state.submitted) {
-    state.submitted = true;
-    submitScore(PUZZLE.id, state.guesses.length, state.won);
-  }
 
   saveState();
   await render();

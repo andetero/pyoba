@@ -44,13 +44,11 @@
     .logo em { color: var(--gold); font-style: normal; }
     .page-title { font-family: var(--mono); font-size: 11px; color: var(--mid); letter-spacing: 0.2em; text-transform: uppercase; }
 
-    /* Personal stats */
     .personal-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--faint); border: 1px solid var(--faint); border-radius: 12px; overflow: hidden; margin: 28px 0 24px; }
     .pstat { background: var(--bg); padding: 16px 12px; text-align: center; }
     .pstat-val { font-family: var(--mono); font-size: 24px; color: var(--ink); line-height: 1; margin-bottom: 4px; }
     .pstat-label { font-family: var(--mono); font-size: 9px; color: var(--mid); letter-spacing: 0.15em; }
 
-    /* Distribution */
     .dist-title { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--mid); text-transform: uppercase; margin-bottom: 12px; }
     .dist-row { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; }
     .dist-num { font-family: var(--mono); font-size: 12px; color: var(--mid); width: 12px; text-align: right; flex-shrink: 0; }
@@ -59,22 +57,11 @@
     .dist-bar span { font-family: var(--mono); font-size: 11px; color: white; }
     .distribution { margin-bottom: 32px; }
 
-    /* Archive list */
     .section-title { font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em; color: var(--mid); text-transform: uppercase; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--faint); }
 
     .puzzle-list { display: flex; flex-direction: column; }
 
-    .puzzle-row {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-      padding: 16px 12px;
-      border-bottom: 1px solid var(--faint);
-      text-decoration: none;
-      color: inherit;
-      border-radius: 6px;
-      transition: background 0.15s;
-    }
+    .puzzle-row { display: flex; align-items: center; gap: 16px; padding: 16px 12px; border-bottom: 1px solid var(--faint); text-decoration: none; color: inherit; border-radius: 6px; transition: background 0.15s; }
     .puzzle-row:first-child { border-top: 1px solid var(--faint); }
     .puzzle-row:hover { background: var(--faint); }
 
@@ -87,17 +74,8 @@
 
     .puzzle-right { text-align: right; flex-shrink: 0; }
     .puzzle-squares { font-size: 13px; line-height: 1; margin-bottom: 4px; }
-    .puzzle-community { font-family: var(--mono); font-size: 10px; color: var(--mid); letter-spacing: 0.05em; }
 
-    .play-badge {
-      font-family: var(--mono);
-      font-size: 9px;
-      letter-spacing: 0.15em;
-      color: var(--gold);
-      border: 1px solid var(--gold);
-      border-radius: 4px;
-      padding: 2px 6px;
-    }
+    .play-badge { font-family: var(--mono); font-size: 9px; letter-spacing: 0.15em; color: var(--gold); border: 1px solid var(--gold); border-radius: 4px; padding: 2px 6px; }
 
     .loading { flex: 1; display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px; }
     .loading-dots { display: flex; gap: 6px; }
@@ -133,9 +111,6 @@
 </div>
 
 <script>
-const SUPABASE_URL = 'https://ctrwrryyypxfeaggwuzh.supabase.co';
-const SUPABASE_KEY = 'sb_publishable_5cLkMj-rmHw-AMmCd2rB4Q_Tf2ChS2v';
-
 function getAllLocalStates() {
   const states = {};
   for (let i = 0; i < localStorage.length; i++) {
@@ -149,26 +124,6 @@ function getAllLocalStates() {
     }
   }
   return states;
-}
-
-async function fetchAllCommunityStats() {
-  try {
-    const res = await fetch(`${SUPABASE_URL}/rest/v1/scores?select=puzzle_id,guesses,won`,
-      { headers: { 'apikey': SUPABASE_KEY, 'Authorization': `Bearer ${SUPABASE_KEY}` } });
-    const rows = await res.json();
-    const byPuzzle = {};
-    rows.forEach(r => {
-      if (!byPuzzle[r.puzzle_id]) byPuzzle[r.puzzle_id] = [];
-      byPuzzle[r.puzzle_id].push(r);
-    });
-    const stats = {};
-    Object.entries(byPuzzle).forEach(([id, pr]) => {
-      const total = pr.length;
-      const wins = pr.filter(r => r.won).length;
-      stats[id] = { total, solveRate: Math.round((wins/total)*100), avgGuesses: (pr.reduce((s,r)=>s+r.guesses,0)/total).toFixed(1) };
-    });
-    return stats;
-  } catch(e) { return {}; }
 }
 
 async function fetchPuzzleArchive() {
@@ -196,23 +151,19 @@ function calcPersonalStats(states) {
 
 async function render() {
   const app = document.getElementById('app');
-  const [localStates, communityStats, puzzleArchive] = await Promise.all([
+  const [localStates, puzzleArchive] = await Promise.all([
     getAllLocalStates(),
-    fetchAllCommunityStats(),
     fetchPuzzleArchive()
   ]);
 
   const ps = calcPersonalStats(localStates);
 
-  // Merge all known puzzle IDs
   const allIds = new Set([
     ...puzzleArchive.map(p => p.id),
     ...Object.keys(localStates).map(Number),
-    ...Object.keys(communityStats).map(Number)
   ]);
   const sortedIds = [...allIds].sort((a,b) => b - a);
 
-  // Puzzle map for quick lookup
   const puzzleMap = {};
   puzzleArchive.forEach(p => { puzzleMap[p.id] = p; });
 
@@ -234,11 +185,8 @@ async function render() {
 
   const rowsHtml = sortedIds.map(id => {
     const local = localStates[id];
-    const community = communityStats[id];
     const puzzle = puzzleMap[id];
-
     const played = local && (local.won || local.lost);
-    const won = local?.won;
 
     let answerHtml = '';
     let diffHtml = '';
@@ -255,11 +203,9 @@ async function render() {
       ? local.guesses.map(g => g.result==='correct'?'🟩':g.result==='close'?'🟨':'🟥').join('')
       : '';
 
-    const communityLine = community ? `${community.solveRate}% solved · ${community.avgGuesses} avg` : '';
-
     const rightHtml = played
-      ? `<div class="puzzle-squares">${squares}</div><div class="puzzle-community">${communityLine}</div>`
-      : `<div class="play-badge">PLAY</div><div class="puzzle-community" style="margin-top:4px">${communityLine}</div>`;
+      ? `<div class="puzzle-squares">${squares}</div>`
+      : `<div class="play-badge">PLAY</div>`;
 
     return `<a class="puzzle-row" href="/play.html?id=${id}">
       <div class="puzzle-id">#${id}</div>
