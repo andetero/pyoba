@@ -233,7 +233,7 @@ async function render() {
     const score = state.won ? state.guesses.length : 'X';
     const emoji = state.won ? ['🧠','🔥','✨','💡','🎯'][Math.min(state.guesses.length - 1, 4)] : '😔';
     const squares = state.guesses.map(g => g.result === 'correct' ? '🟩' : g.result === 'close' ? '🟨' : '🟥').join('');
-    const shareStr = `GIST #${PUZZLE.id} ${score}/5\n${squares}\npyoba.com`;
+    const shareStr = `GIST #${PUZZLE.id} ${score}/5\n${squares}`;
 
     html += `<div class="end-card">
       <div class="end-emoji">${emoji}</div>
