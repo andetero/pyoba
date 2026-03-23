@@ -322,7 +322,7 @@ async function submitGuess() {
   state.guesses.push({ word, result });
 
   if (result === 'correct') state.won = true;
-  else if (result === 'wrong' && state.revealedCount < PUZZLE.sentences.length) state.revealedCount++;
+  else if (state.revealedCount < PUZZLE.sentences.length) state.revealedCount++;
   if (!state.won && state.guesses.length >= 5) { state.lost = true; state.revealedCount = PUZZLE.sentences.length; }
 
   if ((state.won || state.lost) && !state.submitted) {
