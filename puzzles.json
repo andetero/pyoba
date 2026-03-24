@@ -1,5 +1,24 @@
 [
   {
+    "answer": "boredom",
+    "difficulty": "EASY",
+    "sentences": [
+      "It arrives like fog, settling over the mind when stimulation fails to match the soul's appetite for engagement.",
+      "Philosophers consider it a uniquely human affliction — animals in the wild never seem to experience this particular restlessness.",
+      "Children fidget and sigh under its weight, while adults often mistake it for depression or fatigue.",
+      "It can strike in the middle of exciting activities when the novelty wears thin, or during long stretches of routine.",
+      "The feeling makes minutes crawl like hours, accompanied by that familiar complaint: there's nothing to do."
+    ],
+    "close": [
+      "bored",
+      "boring",
+      "tedium",
+      "restlessness",
+      "ennui"
+    ],
+    "id": 19
+  },
+  {
     "answer": "laughter",
     "difficulty": "EASY",
     "sentences": [
