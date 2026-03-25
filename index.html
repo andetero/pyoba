@@ -122,17 +122,6 @@
       margin-bottom: 10px;
     }
 
-    .app-badge {
-      display: inline-block;
-      font-size: 9px;
-      letter-spacing: 0.15em;
-      color: var(--gold);
-      border: 1px solid var(--gold);
-      border-radius: 4px;
-      padding: 3px 8px;
-      margin-bottom: 12px;
-    }
-
     .app-links {
       display: flex;
       gap: 16px;
@@ -232,7 +221,19 @@
 
       <div class="app-card">
         <div class="app-icon">
-          <img src="/icons/daily-brain-games.png" alt="Daily Brain Games icon">
+          <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="64" height="64">
+            <rect width="64" height="64" rx="14" fill="#111827"/>
+            <polygon points="32,14 40,19 40,29 32,34 24,29 24,19" fill="none" stroke="#6366f1" stroke-width="1.5"/>
+            <polygon points="32,20 38,23.5 38,30.5 32,34 26,30.5 26,23.5" fill="none" stroke="#818cf8" stroke-width="1" stroke-opacity="0.6"/>
+            <polygon points="32,26 36,28.5 36,33.5 32,36 28,33.5 28,28.5" fill="none" stroke="#a5b4fc" stroke-width="0.8" stroke-opacity="0.4"/>
+            <circle cx="32" cy="14" r="2" fill="#6366f1"/>
+            <circle cx="40" cy="19" r="2" fill="#ec4899"/>
+            <circle cx="40" cy="29" r="2" fill="#f59e0b"/>
+            <circle cx="32" cy="34" r="2" fill="#10b981"/>
+            <circle cx="24" cy="29" r="2" fill="#06b6d4"/>
+            <circle cx="24" cy="19" r="2" fill="#8b5cf6"/>
+            <text x="32" y="54" font-family="sans-serif" font-size="14" text-anchor="middle">🔥</text>
+          </svg>
         </div>
         <div class="app-info">
           <div class="app-name">Daily Brain Games</div>
@@ -251,8 +252,9 @@
     <footer>
       <span>© 2026 PYOBA</span>
     </footer>
-    
+
   </div>
+
   <script>
     document.querySelectorAll('.app-icon[data-appid]').forEach(async el => {
       const id = el.dataset.appid;
