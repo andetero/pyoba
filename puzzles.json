@@ -1,5 +1,24 @@
 [
   {
+    "answer": "melancholy",
+    "difficulty": "HARD",
+    "sentences": [
+      "It arrives like autumn weather — not as a storm, but as a gradual shift in the air that changes how everything appears.",
+      "Renaissance artists knew it as one of the four humors, caused by an excess of black bile that colored both temperament and perception.",
+      "Unlike its sharper cousins, it carries a strange beauty, making ordinary moments feel profound and bittersweet.",
+      "Poets have always been drawn to its particular shade of sadness — one that finds sweetness in sorrow and depth in the minor keys.",
+      "It transforms simple scenes into something wistful: bare trees, fading light, old photographs become vessels for this gentle, persistent ache."
+    ],
+    "close": [
+      "melancholic",
+      "wistfulness",
+      "pensiveness",
+      "mournfulness",
+      "plaintiveness"
+    ],
+    "id": 22
+  },
+  {
     "answer": "betrayal",
     "difficulty": "MEDIUM",
     "sentences": [
