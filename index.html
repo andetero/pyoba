@@ -105,6 +105,27 @@
       display: block;
     }
 
+    /* Skeleton shimmer while loading */
+    .app-card.loading .app-icon,
+    .app-card.loading .skel {
+      background: linear-gradient(90deg, #1e1c18 25%, #2a2520 50%, #1e1c18 75%);
+      background-size: 200% 100%;
+      animation: shimmer 1.4s infinite;
+      border-radius: 4px;
+    }
+
+    .app-card.loading .app-icon { border-radius: 14px; }
+
+    .skel-name  { height: 20px; width: 140px; margin-bottom: 10px; }
+    .skel-desc1 { height: 10px; width: 100%; margin-bottom: 6px; }
+    .skel-desc2 { height: 10px; width: 75%; margin-bottom: 10px; }
+    .skel-link  { height: 10px; width: 60px; }
+
+    @keyframes shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
     .app-info { flex: 1; min-width: 0; }
 
     .app-name {
@@ -172,90 +193,127 @@
 
     <div class="apps">
       <div class="section-label">APPS</div>
-
-      <div class="app-card">
-        <div class="app-icon" data-appid="6760603110"></div>
-        <div class="app-info">
-          <div class="app-name">GIST</div>
-          <div class="app-desc">A daily word puzzle. One paragraph, one word, five guesses. A new puzzle every day.</div>
-          <div class="app-links">
-            <a href="https://apps.apple.com/us/app/gist-daily-word-puzzle/id6760603110" class="app-link" target="_blank">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-              App Store
-            </a>
-            <a href="/gist.html" class="app-link">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
-              Play on Web
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="app-card">
-        <div class="app-icon" data-appid="6760981351"></div>
-        <div class="app-info">
-          <div class="app-name">NetSleuth</div>
-          <div class="app-desc">A network diagnostic toolkit for iOS. Ping hosts, trace routes, inspect SSL certificates, look up DNS records, check open ports, run WHOIS lookups, and more.</div>
-          <div class="app-links">
-            <a href="https://apps.apple.com/us/app/netsleuth/id6760981351" class="app-link" target="_blank">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-              App Store
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="app-card">
-        <div class="app-icon" data-appid="6761038219"></div>
-        <div class="app-info">
-          <div class="app-name">SnakeRush Arcade</div>
-          <div class="app-desc">The classic snake experience on modern iPhone and iPad. Smooth swipe controls, retro-inspired visuals, and fast addictive gameplay. Grow as long as you can — without crashing.</div>
-          <div class="app-links">
-            <a href="https://apps.apple.com/us/app/snakerush-arcade/id6761038219" class="app-link" target="_blank">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-              App Store
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <div class="app-card">
-        <div class="app-icon" data-appid="6761126977"></div>
-        <div class="app-info">
-          <div class="app-name">Daily Brain Games</div>
-          <div class="app-desc">Three puzzles, every day — Anagram, Trivia, and Memory Match. Same puzzles worldwide, streak tracking, and a clean ad-free experience. No accounts, no subscriptions.</div>
-          <div class="app-links">
-            <a href="https://apps.apple.com/us/app/daily-brain-games/id6761126977" class="app-link" target="_blank">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-              App Store
-            </a>
-          </div>
-        </div>
-      </div>
-
+      <div id="app-list"></div>
     </div>
 
     <footer>
       <span>© 2026 PYOBA</span>
     </footer>
-
   </div>
 
   <script>
-    document.querySelectorAll('.app-icon[data-appid]').forEach(async el => {
-      const id = el.dataset.appid;
-      try {
-        const res = await fetch(`https://itunes.apple.com/lookup?id=${id}`);
-        const data = await res.json();
-        const app = data.results[0];
-        if (app && app.artworkUrl100) {
-          const img = document.createElement('img');
-          img.src = app.artworkUrl100;
-          img.alt = app.trackName + ' icon';
-          el.appendChild(img);
-        }
-      } catch (e) {}
+    // ─── App registry ──────────────────────────────────────────────────────────
+    // Add a new app by dropping an entry here. Only `id` is required.
+    // Use `name` / `desc` to override what comes back from iTunes.
+    // Use `webUrl` to add a "Play on Web" link.
+    const APPS = [
+      {
+        id: '6760603110',
+        name: 'GIST',                           // override iTunes title
+        desc: 'A daily word puzzle. One paragraph, one word, five guesses. A new puzzle every day.',
+        webUrl: '/gist.html',
+      },
+      {
+        id: '6760981351',
+        name: 'NetSleuth',
+        desc: 'A network diagnostic toolkit for iOS. Ping hosts, trace routes, inspect SSL certificates, look up DNS records, check open ports, run WHOIS lookups, and more.',
+      },
+      {
+        id: '6761038219',
+        name: 'SnakeRush Arcade',
+        desc: 'The classic snake experience on modern iPhone and iPad. Smooth swipe controls, retro-inspired visuals, and fast addictive gameplay. Grow as long as you can — without crashing.',
+      },
+      {
+        id: '6761126977',
+        desc: 'Three puzzles, every day — Anagram, Trivia, and Memory Match. Same puzzles worldwide, streak tracking, and a clean ad-free experience. No accounts, no subscriptions.',
+      },
+    ];
+
+    // ─── SVGs ──────────────────────────────────────────────────────────────────
+    const APPLE_SVG = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>`;
+    const WEB_SVG   = `<svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>`;
+
+    // ─── Render skeleton placeholders immediately ──────────────────────────────
+    const list = document.getElementById('app-list');
+
+    APPS.forEach(app => {
+      const card = document.createElement('div');
+      card.className = 'app-card loading';
+      card.dataset.id = app.id;
+      card.innerHTML = `
+        <div class="app-icon"></div>
+        <div class="app-info">
+          <div class="skel skel-name"></div>
+          <div class="skel skel-desc1"></div>
+          <div class="skel skel-desc2"></div>
+          <div class="skel skel-link"></div>
+        </div>`;
+      list.appendChild(card);
     });
+
+    // ─── Fetch all apps in one request, then populate ─────────────────────────
+    const ids = APPS.map(a => a.id).join(',');
+
+    fetch(`https://itunes.apple.com/lookup?id=${ids}`)
+      .then(r => r.json())
+      .then(data => {
+        // iTunes doesn't guarantee order, so key by trackId
+        const byId = {};
+        data.results.forEach(r => { byId[String(r.trackId)] = r; });
+
+        APPS.forEach(app => {
+          const itunes = byId[app.id] || {};
+          const card   = list.querySelector(`[data-id="${app.id}"]`);
+          if (!card) return;
+
+          const name    = app.name  || itunes.trackName        || '';
+          const rawDesc = app.desc  || itunes.description      || '';
+          const storeUrl = `https://apps.apple.com/us/app/id${app.id}`;
+          const iconUrl  = itunes.artworkUrl100 || '';
+
+          // Truncate iTunes descriptions to ~160 chars at a word boundary
+          const desc = rawDesc.length > 160
+            ? rawDesc.slice(0, 160).replace(/\s\S*$/, '') + '…'
+            : rawDesc;
+
+          const linksHtml = [
+            `<a href="${storeUrl}" class="app-link" target="_blank">${APPLE_SVG} App Store</a>`,
+            app.webUrl
+              ? `<a href="${app.webUrl}" class="app-link">${WEB_SVG} Play on Web</a>`
+              : ''
+          ].join('');
+
+          card.classList.remove('loading');
+          card.innerHTML = `
+            <div class="app-icon">
+              ${iconUrl ? `<img src="${iconUrl}" alt="${name} icon">` : ''}
+            </div>
+            <div class="app-info">
+              <div class="app-name">${name}</div>
+              <div class="app-desc">${desc}</div>
+              <div class="app-links">${linksHtml}</div>
+            </div>`;
+        });
+      })
+      .catch(() => {
+        // On failure, fill cards with whatever we have locally
+        APPS.forEach(app => {
+          const card = list.querySelector(`[data-id="${app.id}"]`);
+          if (!card) return;
+          const storeUrl = `https://apps.apple.com/us/app/id${app.id}`;
+          card.classList.remove('loading');
+          card.innerHTML = `
+            <div class="app-icon"></div>
+            <div class="app-info">
+              <div class="app-name">${app.name || ''}</div>
+              <div class="app-desc">${app.desc || ''}</div>
+              <div class="app-links">
+                <a href="${storeUrl}" class="app-link" target="_blank">${APPLE_SVG} App Store</a>
+                ${app.webUrl ? `<a href="${app.webUrl}" class="app-link">${WEB_SVG} Play on Web</a>` : ''}
+              </div>
+            </div>`;
+        });
+      });
   </script>
 </body>
 </html>
