@@ -1,5 +1,24 @@
 [
   {
+    "answer": "reflection",
+    "difficulty": "EASY",
+    "sentences": [
+      "It exists in the space between thought and image, requiring both light and a willingness to look back.",
+      "Lakes at dawn offer it perfectly, their surfaces undisturbed by wind or current.",
+      "Children discover it early, pressing their faces close to bathroom mirrors and marveling at the symmetry.",
+      "It can be literal, bouncing photons back to their source, or metaphorical, turning inward to examine one's choices.",
+      "Every mirror depends on this phenomenon, creating a reversed duplicate of whatever stands before its silvered surface."
+    ],
+    "close": [
+      "reflect",
+      "reflecting",
+      "reflected",
+      "reflective",
+      "mirror"
+    ],
+    "id": 32
+  },
+  {
     "answer": "counterpoint",
     "difficulty": "WILDCARD",
     "sentences": [
