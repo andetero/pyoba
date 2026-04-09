@@ -1,5 +1,24 @@
 [
   {
+    "answer": "perspective",
+    "difficulty": "MEDIUM",
+    "sentences": [
+      "Two architects can examine the same blueprint and see entirely different buildings rising from the page.",
+      "It shifts with altitude — what appears insurmountable at ground level often reveals pathways when viewed from above.",
+      "Artists manipulate it deliberately, leading the eye toward vanishing points that exist nowhere but in the mind's interpretation.",
+      "Time has a way of changing it completely; events that once loomed large shrink to footnotes in memory's revised narrative.",
+      "Standing in someone else's shoes requires more than empathy — it demands the willingness to see through their eyes entirely."
+    ],
+    "close": [
+      "viewpoint",
+      "outlook",
+      "angle",
+      "perception",
+      "perspectives"
+    ],
+    "id": 35
+  },
+  {
     "answer": "persistence",
     "difficulty": "MEDIUM",
     "sentences": [
