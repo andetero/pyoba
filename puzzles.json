@@ -1,5 +1,24 @@
 [
   {
+    "answer": "irony",
+    "difficulty": "HARD",
+    "sentences": [
+      "It thrives in the space between what appears to be true and what actually is, often wearing the mask of its opposite.",
+      "Ancient Greek tragedies elevated it to an art form, where audiences possessed knowledge that remained hidden from the characters on stage.",
+      "Modern life seems saturated with it — from fire stations burning down to marriage counselors filing for divorce.",
+      "It can be wielded deliberately as a literary device or arise spontaneously from the contradictions inherent in human experience.",
+      "The term originates from a Greek word meaning 'feigned ignorance,' describing someone who pretends to know less than they do."
+    ],
+    "close": [
+      "ironic",
+      "paradox",
+      "contradiction",
+      "sarcasm",
+      "satirical"
+    ],
+    "id": 36
+  },
+  {
     "answer": "perspective",
     "difficulty": "MEDIUM",
     "sentences": [
