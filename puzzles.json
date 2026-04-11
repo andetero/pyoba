@@ -1,5 +1,24 @@
 [
   {
+    "answer": "disillusionment",
+    "difficulty": "HARD",
+    "sentences": [
+      "It arrives not as a thunderclap but as a slow recognition that the map does not match the territory.",
+      "Artists and writers have long chronicled this particular form of awakening, when cherished beliefs meet unyielding reality.",
+      "Young people experience it most acutely in their twenties, as the promises of childhood give way to the complexities of adult life.",
+      "It is not mere disappointment, which concerns specific events, but rather the crumbling of entire worldviews once held sacred.",
+      "The process strips away naive hope and romantic idealism, leaving behind either cynicism or a more mature form of wisdom."
+    ],
+    "close": [
+      "disillusion",
+      "disillusioned",
+      "disillusioning",
+      "disappointment",
+      "cynicism"
+    ],
+    "id": 37
+  },
+  {
     "answer": "irony",
     "difficulty": "HARD",
     "sentences": [
