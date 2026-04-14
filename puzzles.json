@@ -1,5 +1,24 @@
 [
   {
+    "answer": "memory",
+    "difficulty": "EASY",
+    "sentences": [
+      "It builds palaces from fragments, then moves the furniture around when no one is looking.",
+      "Scientists say it's not a recording but a reconstruction, different each time we access it.",
+      "Children form their first lasting ones around age three, though earlier experiences still shape them.",
+      "It can be triggered by a scent, a song, or the angle of afternoon light through a window.",
+      "Without it, we would wake each morning as strangers to ourselves, unable to recognize our own faces or recall our names."
+    ],
+    "close": [
+      "memories",
+      "remembering",
+      "remember",
+      "remembered",
+      "recollection"
+    ],
+    "id": 40
+  },
+  {
     "answer": "gravity",
     "difficulty": "EASY",
     "sentences": [
