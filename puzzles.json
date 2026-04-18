@@ -1,5 +1,24 @@
 [
   {
+    "answer": "ambivalence",
+    "difficulty": "HARD",
+    "sentences": [
+      "It is the mind's refusal to choose a single truth when two opposing forces pull with equal strength.",
+      "Poets and novelists understand it as the fertile ground where complexity blooms, rejecting the clean lines of certainty.",
+      "In relationships, it manifests as loving someone precisely because of — and in spite of — their most difficult qualities.",
+      "Psychologists recognize it as a natural state of emotional maturity, though popular culture often mistakes it for indecision.",
+      "The prefix reveals its essence: feeling two ways at once, holding contradictory emotions toward the same person, idea, or choice."
+    ],
+    "close": [
+      "ambivalent",
+      "conflicted",
+      "uncertainty",
+      "contradiction",
+      "paradox"
+    ],
+    "id": 44
+  },
+  {
     "answer": "euphemism",
     "difficulty": "HARD",
     "sentences": [
