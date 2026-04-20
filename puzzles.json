@@ -1,5 +1,23 @@
 [
   {
+    "answer": "thirst",
+    "difficulty": "EASY",
+    "sentences": [
+      "It begins as whisper in the cells, a molecular plea that grows louder with each passing moment.",
+      "Desert travelers know its power to transform rational thought into desperate obsession.",
+      "The human body can survive weeks without food, but only days when this need goes unmet.",
+      "It drives migrations across continents and has shaped the rise and fall of civilizations.",
+      "A simple glass of water becomes the most precious treasure when this craving takes hold."
+    ],
+    "close": [
+      "thirsting",
+      "thirsty",
+      "dehydration",
+      "craving"
+    ],
+    "id": 46
+  },
+  {
     "answer": "resonance",
     "difficulty": "WILDCARD",
     "sentences": [
