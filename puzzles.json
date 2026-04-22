@@ -1,5 +1,24 @@
 [
   {
+    "answer": "serendipity",
+    "difficulty": "MEDIUM",
+    "sentences": [
+      "It transforms accidents into gifts, making philosophers wonder if the universe has a sense of humor.",
+      "Scientists have stumbled upon their greatest discoveries through its unexpected grace — penicillin, X-rays, and the cosmic microwave background among them.",
+      "It requires both an open mind and prepared eyes, for fortune favors those ready to recognize what they weren't seeking.",
+      "The phenomenon occurs when searching for one thing leads to finding something entirely different yet more valuable.",
+      "Horace Walpole coined the term in 1754, inspired by a Persian fairy tale about three princes who kept making fortunate discoveries by accident."
+    ],
+    "close": [
+      "coincidence",
+      "luck",
+      "fortune",
+      "chance",
+      "serendipitous"
+    ],
+    "id": 48
+  },
+  {
     "answer": "hunger",
     "difficulty": "EASY",
     "sentences": [
