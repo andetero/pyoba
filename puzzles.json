@@ -1,5 +1,24 @@
 [
   {
+    "answer": "intuition",
+    "difficulty": "MEDIUM",
+    "sentences": [
+      "It arrives without invitation, a sudden clarity that bypasses the mind's careful calculations and logical progressions.",
+      "Artists and inventors often credit it as their most reliable collaborator, though it cannot be summoned or controlled through willpower alone.",
+      "Scientists have discovered it processes information faster than conscious thought, drawing on patterns accumulated over years of experience.",
+      "Parents rely on it when their child's fever breaks or something feels wrong despite normal appearances, trusting knowledge that has no clear source.",
+      "It whispers the answer before the question is fully formed, that inner voice that simply knows without needing to explain how."
+    ],
+    "close": [
+      "instinct",
+      "intuitive",
+      "intuit",
+      "hunches",
+      "gut-feeling"
+    ],
+    "id": 49
+  },
+  {
     "answer": "serendipity",
     "difficulty": "MEDIUM",
     "sentences": [
