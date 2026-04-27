@@ -1,5 +1,23 @@
 [
   {
+    "answer": "shadow",
+    "difficulty": "EASY",
+    "sentences": [
+      "It follows you faithfully yet has no substance, a companion that cannot be grasped or held.",
+      "Ancient civilizations feared losing it, believing it contained part of the soul itself.",
+      "At noon it shrinks to almost nothing, while at dawn and dusk it stretches impossibly long.",
+      "Children delight in stepping on each other's versions of it, playing games of pursuit and escape.",
+      "Light creates it by blocking its own path, painting dark silhouettes on every surface it cannot reach."
+    ],
+    "close": [
+      "shadows",
+      "silhouette",
+      "shade",
+      "darkness"
+    ],
+    "id": 53
+  },
+  {
     "answer": "acoustics",
     "difficulty": "WILDCARD",
     "sentences": [
