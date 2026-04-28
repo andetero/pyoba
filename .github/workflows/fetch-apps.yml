@@ -14,7 +14,7 @@ jobs:
 
       - name: Fetch iTunes data
         run: |
-          curl -s "https://itunes.apple.com/lookup?id=6760603110,6760981351,6761038219,6761126977,6761673183,6761800197" \
+          curl -s "https://itunes.apple.com/lookup?id=6760603110,6760981351,6761038219,6761126977,6761673183,6761800197,6761319280" \
             -o apps.json
 
       - name: Commit if changed
