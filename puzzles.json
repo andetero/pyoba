@@ -1,5 +1,24 @@
 [
   {
+    "answer": "loneliness",
+    "difficulty": "EASY",
+    "sentences": [
+      "It can exist in the middle of a crowd, invisible to everyone including the person experiencing it.",
+      "Philosophers have argued it is the fundamental condition of consciousness — the irreducible gap between any two minds.",
+      "Children rarely feel it; the capacity seems to develop alongside self-awareness.",
+      "It is distinct from solitude, which is chosen, and from isolation, which is imposed.",
+      "The word comes from 'lone' — the state of being the only one of its kind in a particular place."
+    ],
+    "close": [
+      "isolation",
+      "solitude",
+      "alienation",
+      "emptiness",
+      "lonely"
+    ],
+    "id": 54
+  },
+  {
     "answer": "shadow",
     "difficulty": "EASY",
     "sentences": [
