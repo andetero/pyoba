@@ -1,5 +1,24 @@
 [
   {
+    "answer": "improvisation",
+    "difficulty": "MEDIUM",
+    "sentences": [
+      "It emerges in the space between preparation and spontaneity, where knowledge meets the unknown.",
+      "Jazz musicians consider it the highest form of musical conversation, speaking a language that has never been spoken before.",
+      "Children excel at it naturally until education teaches them there are right and wrong answers.",
+      "It requires both deep expertise and the willingness to abandon all plans in service of the moment.",
+      "Whether on stage, in the kitchen, or during a power outage, it transforms constraint into creative opportunity through real-time invention."
+    ],
+    "close": [
+      "improvise",
+      "improvising",
+      "improvised",
+      "spontaneity",
+      "adaptation"
+    ],
+    "id": 56
+  },
+  {
     "answer": "frustration",
     "difficulty": "MEDIUM",
     "sentences": [
