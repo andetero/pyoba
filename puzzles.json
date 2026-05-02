@@ -1,5 +1,24 @@
 [
   {
+    "answer": "vindication",
+    "difficulty": "HARD",
+    "sentences": [
+      "It arrives like dawn after the longest night, often when the accused has stopped expecting it.",
+      "History is littered with those who died before receiving it, their names cleared only by subsequent generations.",
+      "The feeling is sweeter than simple victory because it erases not just defeat, but the deeper wound of being misunderstood.",
+      "It transforms the narrative completely — what seemed like failure becomes prescience, what looked like guilt becomes martyrdom.",
+      "The word literally means 'to claim back' — the restoration of reputation through proof that earlier judgments were wrong."
+    ],
+    "close": [
+      "vindicate",
+      "vindicated",
+      "vindicating",
+      "exoneration",
+      "justification"
+    ],
+    "id": 58
+  },
+  {
     "answer": "paradox",
     "difficulty": "HARD",
     "sentences": [
