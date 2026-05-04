@@ -1,5 +1,24 @@
 [
   {
+    "answer": "surprise",
+    "difficulty": "EASY",
+    "sentences": [
+      "It arrives uninvited, disrupting the smooth flow of expectation like a stone thrown into still water.",
+      "The body responds before the mind can catch up — eyes widening, breath catching, muscles tensing in preparation for the unknown.",
+      "Children experience it with their whole beings, while adults learn to mask the involuntary reactions that betray its presence.",
+      "It can be delightful or devastating, but it always shares the same essential quality: the collision between what we thought would happen and what actually did.",
+      "Birthday parties and horror movies both depend on this sudden shift from the anticipated to the unexpected."
+    ],
+    "close": [
+      "surprised",
+      "surprising",
+      "astonishment",
+      "shock",
+      "amazement"
+    ],
+    "id": 60
+  },
+  {
     "answer": "vertigo",
     "difficulty": "WILDCARD",
     "sentences": [
