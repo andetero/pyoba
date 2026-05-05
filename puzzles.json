@@ -1,5 +1,24 @@
 [
   {
+    "answer": "sleep",
+    "difficulty": "EASY",
+    "sentences": [
+      "Each day we surrender to a small rehearsal for death, willingly losing consciousness for hours at a time.",
+      "The body temperature drops, breathing slows, and the mind begins its nightly theater of impossible stories.",
+      "Scientists say it clears toxins from the brain and consolidates memories, turning experiences into lasting knowledge.",
+      "Babies require sixteen hours, while adults need roughly eight, though this universal need varies little across cultures.",
+      "We spend pillows under our heads, close our eyes, and drift into the restorative darkness that occupies a third of human life."
+    ],
+    "close": [
+      "sleeping",
+      "slumber",
+      "rest",
+      "nap",
+      "sleeps"
+    ],
+    "id": 61
+  },
+  {
     "answer": "surprise",
     "difficulty": "EASY",
     "sentences": [
