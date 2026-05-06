@@ -1,11 +1,11 @@
 name: Fetch App Data
 
 on:
- schedule:
+  schedule:
     # Runs at 5:00 AM Mountain Time
     - cron: "0 5 * * *"
       timezone: "America/Denver"
-  workflow_dispatch:        # also lets you trigger it manually from GitHub
+  workflow_dispatch:
 
 jobs:
   fetch:
