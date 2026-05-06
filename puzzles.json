@@ -1,5 +1,24 @@
 [
   {
+    "answer": "temptation",
+    "difficulty": "MEDIUM",
+    "sentences": [
+      "It whispers sweetest when the mind is tired, when defenses have grown thin from the day's accumulated choices.",
+      "Ancient stories cast it as a serpent, a golden apple, a voice that knows exactly which words will make virtue waver.",
+      "Children feel it as pure want — the cookie on the counter, the toy in another's hands — uncomplicated by shame or consequence.",
+      "It transforms the forbidden into the irresistible, making the very act of denial amplify desire until reason becomes negotiable.",
+      "The word derives from the Latin meaning 'to test' — that moment when character meets opportunity and discovers what it's truly made of."
+    ],
+    "close": [
+      "tempt",
+      "tempting",
+      "tempted",
+      "allure",
+      "seduction"
+    ],
+    "id": 62
+  },
+  {
     "answer": "sleep",
     "difficulty": "EASY",
     "sentences": [
